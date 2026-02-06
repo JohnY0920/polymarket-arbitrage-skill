@@ -1,44 +1,14 @@
-# Sensitive files
+# Security Notice
+# This file ensures .env and other sensitive files are never committed
+
 .env
-.env.*
+.env.local
+.env.production
 *.key
 *.pem
-*_key
-*_secret
-config.json
-clawdbot.json
-openclaw.json
-
-# API keys and credentials
-*api_key*
-*apikey*
-*access_token*
-*secret*
+*.p12
+config/secrets.json
 credentials/
-
-# User data
-USER.md
-memory/
-*.private
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-venv/
-env/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Data files with potential sensitive info
-polymarket_data/*.json
-*.db
-*.sqlite
-
-# Logs
-*.log
-logs/
+.git-credentials
+.aws/
+.ssh/
