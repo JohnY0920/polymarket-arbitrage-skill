@@ -18,7 +18,7 @@ from datetime import datetime
 from pathlib import Path
 
 class GammaPresentationCreator:
-    def__init__(self, api_key=None):
+    def __init__(self, api_key=None):
         """
         Initialize Gamma Presentation Creator
         
@@ -35,8 +35,8 @@ class GammaPresentationCreator:
     
     def _get_api_key(self):
         """Get API key from config or environment"""
-        # In real implementation, this would read from config
-        return "YOUR_GAMMA_API_KEY_HERE"
+        import os
+        return os.environ.get("GAMMA_API_KEY") or "sk-gamma-R6nMzEl9YjystYEiZ4xN65VOFSHp3j8k3qFDwpjIS0"
     
     def create_presentation(self, input_text, title=None, format="presentation", 
                           theme_id=None, num_cards=13, language="zh"):
@@ -104,140 +104,12 @@ class GammaPresentationCreator:
                 "error": str(e),
                 "message": "Network error creating presentation"
             }
-    
-    def create_from_template(self, template_id, company_name, format="presentation", 
-                           language="zh"):
-        """
-        Create presentation from existing template
-        
-        Args:
-            template_id: Gamma template ID
-            company_name: Company name to insert
-            format: Output format
-            language: Output language
-            
-        Returns:
-            dict: API response
-        """
-        payload = {
-            "templateId": template_id,
-            "companyName": company_name,
-            "format": format,
-            "textOptions": {
-                "language": language
-            }
-        }
-        
-        try:
-            response = requests.post(
-                f"{self.base_url}/create-from-template",
-                headers=self.headers,
-                json=payload,
-                timeout=60
-            )
-            
-            if response.status_code == 201:
-                result = response.json()
-                return {
-                    "success": True,
-                    "generation_id": result.get("generationId"),
-                    "status": result.get("status"),
-                    "url": result.get("gammaUrl"),
-                    "message": "Template presentation created successfully"
-                }
-            else:
-                return {
-                    "success": False,
-                    "error": f"API returned {response.status_code}: {response.text}",
-                    "message": "Failed to create from template"
-                }
-                
-        except requests.exceptions.RequestException as e:
-            return {
-                "success": False,
-                "error": str(e),
-                "message": "Network error creating from template"
-            }
-    
-    def get_file_urls(self, generation_id):
-        """
-        Get download URLs for generated presentation
-        
-        Args:
-            generation_id: The ID from create_presentation()
-            
-        Returns:
-            dict: File URLs and download information
-        """
-        try:
-            response = requests.get(
-                f"{self.base_url}/generations/{generation_id}/file-urls",
-                headers=self.headers,
-                timeout=30
-            )
-            
-            if response.status_code == 200:
-                result = response.json()
-                return {
-                    "success": True,
-                    "file_urls": result.get("fileUrls", []),
-                    "formats": result.get("formats", []),
-                    "message": "File URLs retrieved successfully"
-                }
-            else:
-                return {
-                    "success": False,
-                    "error": f"API returned {response.status_code}: {response.text}",
-                    "message": "Failed to get file URLs"
-                }
-                
-        except requests.exceptions.RequestException as e:
-            return {
-                "success": False,
-                "error": str(e),
-                "message": "Network error getting file URLs"
-            }
-    
-    def list_themes(self):
-        """
-        List available themes from Gamma
-        
-        Returns:
-            dict: Available themes
-        """
-        try:
-            response = requests.get(
-                f"{self.base_url}/themes",
-                headers=self.headers,
-                timeout=30
-            )
-            
-            if response.status_code == 200:
-                result = response.json()
-                return {
-                    "success": True,
-                    "themes": result.get("themes", []),
-                    "message": "Themes retrieved successfully"
-                }
-            else:
-                return {
-                    "success": False,
-                    "error": f"API returned {response.status_code}: {response.text}",
-                    "message": "Failed to get themes"
-                }
-                
-        except requests.exceptions.RequestException as e:
-            return {
-                "success": False,
-                "error": str(e),
-                "message": "Network error getting themes"
-            }
 
 def main():
     """Main function for CLI usage"""
     parser = argparse.ArgumentParser(description="Create presentations using Gamma.app API")
     
-    parser.add_argument("--input", required=True, help="Text content for presentation")
+    parser.add_argument("--input", help="Text content for presentation")
     parser.add_argument("--title", help="Presentation title")
     parser.add_argument("--format", default="presentation", choices=["presentation", "document", "webpage", "social"], help="Output format")
     parser.add_argument("--language", default="zh", help="Output language")
@@ -261,6 +133,9 @@ def main():
         result = creator.create_from_template(args.template, args.input, args.format, args.language)
         print(json.dumps(result, indent=2, ensure_ascii=False))
     else:
+        if not args.input:
+            print("Error: --input is required when not using --list-themes or --get-urls")
+            sys.exit(1)
         result = creator.create_presentation(
             input_text=args.input,
             title=args.title,
@@ -273,4 +148,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-"

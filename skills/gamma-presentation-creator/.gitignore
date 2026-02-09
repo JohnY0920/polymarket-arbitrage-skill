@@ -1,0 +1,13 @@
+# Gamma Presentation Creator
+
+Create professional presentations using Gamma.app's AI-powered API.
+
+## Files
+- `scripts/gamma_creator.py` - Main API integration
+- `scripts/chinese_tech_canada_presentation.py` - Example content
+- `references/gamma_api.md` - API documentation
+
+## Usage
+Configure API key in gamma_creator.py, then use CLI or import programmatically.
+
+For OpenClaw integration, see SKILL.md

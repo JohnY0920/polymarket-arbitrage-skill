@@ -2,16 +2,8 @@
 """
 Create the Chinese Tech Companies Going Global to Canada presentation
 using Gamma.app API
-
-This creates the specific 13-slide presentation you provided.
 """
 
-import json
-import sys
-import argparse
-from pathlib import Path
-
-# Your presentation content (Chinese)
 PRESENTATION_CONTENT = """中国科技企业出海加拿大
 
 Slide 1: 封面
@@ -86,7 +78,7 @@ Slide 4: 核心问题 - 中国企业出海面临什么？
 📉 B2B采购中80%欧美企业排除中国供应商
 
 核心挑战：
-如何在保持成本优势的同时，获得欧美市场的信任和准入？
+如何在保持成本优势的同时，获得欧美市场的信任 and 准入？
 
 Slide 5: 加拿大解决方案 - 三大战略价值
 价值1: 可信身份 (Trusted Identity)
@@ -356,4 +348,5 @@ Slide 13: 联系方式
 
 "正确的时间，正确的地点，正确的策略"
 
-2026年，加拿大等待着您的到来""
+2026年，加拿大等待着您的到来
+"""
