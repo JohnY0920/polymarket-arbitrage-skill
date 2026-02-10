@@ -4,7 +4,14 @@ Run every hour to maintain operational excellence.
 
 ## Tasks
 
-### 1. Check for Incomplete Tasks
+### 1. Active Projects Status
+- **Kasa Skill Development** (Started: 2026-02-09 23:00)
+  - Check projects/kasa-skill-development.md for current status
+  - Update progress every 30 minutes via Telegram
+  - Track completion of each phase
+  - Alert if blocked or needs attention
+
+### 2. Check for Incomplete Tasks
 - Review any pending work or TODO items
 - Send Telegram update if there are outstanding items requiring attention
 - Prioritize by urgency and business impact

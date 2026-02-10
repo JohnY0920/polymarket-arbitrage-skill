@@ -31,6 +31,21 @@ Things like:
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
 
+### Kasa Smart Devices
+> Kasa smart switch/plug/bulb control via python-kasa
+> Use: `python3 skills/kasa-smart-switch/scripts/kasa_control.py <action>`
+
+**Configured Devices:** (None yet - will auto-populate after first discovery)
+```
+# Run discovery to find devices:
+# python3 skills/kasa-smart-switch/scripts/kasa_control.py list
+
+# Example device list (update after discovery):
+# - Living Room Light → 192.168.1.100 (Smart Bulb)
+# - Kitchen Outlet → 192.168.1.101 (Smart Plug with Energy Monitoring)
+# - Bedroom Lamp → 192.168.1.102 (Dimmable Bulb)
+```
+
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.
