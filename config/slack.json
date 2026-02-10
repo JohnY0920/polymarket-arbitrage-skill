@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "slack": {
+    "botToken": "${SLACK_BOT_TOKEN}",
+    "appToken": null,
+    "signingSecret": null,
+    "enabled": true,
+    "dmPolicy": "allowlist",
+    "groupPolicy": "allowlist"
+  }
+}
