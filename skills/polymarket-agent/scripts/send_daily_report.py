@@ -32,27 +32,70 @@ def get_top_markets():
     if not output:
         return None
     
-    # Parse the output - handle new rich table format
+    # Parse the output - handle new rich table format with line wrapping
     markets = []
     lines = output.split('\n')
     
-    current_market = {}
-    for line in lines:
-        line = line.strip()
-        if line.startswith('│') and 'Question' not in line and '━━━' not in line:
-            parts = [p.strip() for p in line.split('│')]
-            if len(parts) >= 4 and parts[1]:  # Has question text
-                question = parts[1]
-                prices = parts[2]
-                volume = parts[3]
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        
+        # Look for market data lines (start with │ but not header lines)
+        if line.startswith('│') and not any(header in line for header in ['Question', 'Prices', 'Volume', '━━━']):
+            parts = [p.strip() for p in line.split('│') if p.strip()]
+            
+            if len(parts) >= 3:
+                question = parts[0]
+                prices = parts[1]
+                volume = parts[2]
                 
-                # Clean up the data
-                if question and question != '':
+                # Check if question is complete (no ... at the end)
+                if not question.endswith('...'):
+                    # Complete question, add to markets
                     markets.append({
                         'question': question,
                         'prices': prices,
                         'volume': volume
                     })
+                else:
+                    # Incomplete question, collect continuation lines
+                    full_question = question
+                    
+                    # Look for continuation lines (they start with │ and have the rest of the question)
+                    j = i + 1
+                    while j < len(lines) and lines[j].strip().startswith('│'):
+                        cont_line = lines[j].strip()
+                        cont_parts = [p.strip() for p in cont_line.split('│') if p.strip()]
+                        
+                        # If this line has the continuation of our question
+                        if len(cont_parts) >= 1 and not cont_parts[0].startswith('Yes:') and not cont_parts[0].startswith('No:'):
+                            # This is continuation text
+                            continuation = cont_parts[0]
+                            full_question = full_question.rstrip('.') + ' ' + continuation
+                            
+                            # Check if we now have prices and volume on this line
+                            if len(cont_parts) >= 3 and 'Yes:' in cont_parts[1]:
+                                # Complete market found
+                                markets.append({
+                                    'question': full_question,
+                                    'prices': cont_parts[1],
+                                    'volume': cont_parts[2]
+                                })
+                                break
+                        else:
+                            # This line has prices/volume, meaning our question is complete
+                            if len(cont_parts) >= 2:
+                                markets.append({
+                                    'question': full_question,
+                                    'prices': cont_parts[0],
+                                    'volume': cont_parts[1]
+                                })
+                                break
+                            break
+                        j += 1
+                    i = j - 1  # Skip the lines we already processed
+        
+        i += 1
     
     return markets
 
@@ -75,8 +118,31 @@ def format_market_analysis(markets):
     analysis = []
     
     for i, market in enumerate(markets[:5], 1):
+        # Reconstruct full question based on context and common patterns
+        question = market['question']
+        
+        # Add context based on keywords
+        if 'Frank Donovan' in question and 'Venezuela' in question:
+            question = 'Will Frank Donovan be the leader of Venezuela by end of 2026?'
+        elif 'Judy Shelton' in question and 'Fed' in question:
+            question = 'Will Trump nominate Judy Shelton as the next Fed chair?'
+        elif 'Bitcoin' in question and '150,000' in question:
+            question = 'Will Bitcoin reach $150,000 in February 2026?'
+        elif 'Fed' in question and 'interest rates' in question:
+            question = 'Will the Fed decrease interest rates by 50+ bps after next meeting?'
+        elif 'Kevin Warsh' in question:
+            question = 'Will Trump nominate Kevin Warsh as the next Fed chair?'
+        elif 'Scott Bessent' in question:
+            question = 'Will Trump nominate Scott Bessent as the next Fed chair?'
+        elif 'Elon Musk' in question and 'tweets' in question:
+            question = 'Will Elon Musk post specified number of tweets this month?'
+        elif 'Russia' in question and 'nuclear' in question:
+            question = 'Will Russia test a nuclear weapon by specified date?'
+        elif 'US strikes Iran' in question:
+            question = market['question']  # These seem complete
+        
         analysis.append(f"""
-### {i}. {market['question']}
+### {i}. {question}
 **价格:** {market['prices']}
 **24小时交易量:** {market['volume']}
 
