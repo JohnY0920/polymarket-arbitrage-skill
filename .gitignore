@@ -12,3 +12,8 @@ credentials/
 .git-credentials
 .aws/
 .ssh/__pycache__/
+
+# Temporary files
+*.pdf
+*.html
+*.json
