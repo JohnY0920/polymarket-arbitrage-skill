@@ -11,4 +11,4 @@ config/secrets.json
 credentials/
 .git-credentials
 .aws/
-.ssh/
+.ssh/__pycache__/
