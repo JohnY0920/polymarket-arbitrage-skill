@@ -36,7 +36,7 @@ class GammaPresentationCreator:
     def _get_api_key(self):
         """Get API key from config or environment"""
         import os
-        return os.environ.get("GAMMA_API_KEY") or "sk-gamma-R6nMzEl9YjystYEiZ4xN65VOFSHp3j8k3qFDwpjIS0"
+        return os.environ.get("GAMMA_API_KEY") or "sk-gamma-hClm0HmnAKp1Mo8oM1POPPVqPvJdbH4PJiOrxN8JzTk"
     
     def create_presentation(self, input_text, title=None, format="presentation", 
                           theme_id=None, num_cards=13, language="zh"):
