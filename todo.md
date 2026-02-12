@@ -1,23 +1,27 @@
 # To-Do List
 
-## 📅 Due Today
-| # | Task | Owner | Source |
-|---|------|-------|--------|
-| 1 | Set up browser relay via Chrome extension | @JoJo | Browser automation setup |
-| 2 | Create browser profiles for isolated sessions | @JoJo | Browser automation setup |
-| 3 | Configure browser automation features | @JoJo | Browser automation setup |
+## ✅ Completed Today
+| # | Task | Owner | Completed | Notes |
+|---|------|-------|-----------|--------|
+| 1 | Set up browser relay via Chrome extension | @JoJo | 2026-02-11 | Extension installed at ~/.openclaw/browser/chrome-extension |
+| 2 | Create browser profiles for isolated sessions | @JoJo | 2026-02-11 | Created work, personal, automation profiles |
+| 3 | Configure browser automation features | @JoJo | 2026-02-11 | Basic setup complete, ready for automation scripts |
 
-## 📆 This Week
-| # | Task | Owner | Due | Source |
-|---|------|-------|-----|--------|
-| 1 | Implement exec approvals system | @JoJo | Fri | Security enhancement |
-| 2 | Set up cron expressions for complex scheduling | @JoJo | Fri | Advanced automation |
-| 3 | Configure wake events for conditional triggers | @JoJo | Fri | Advanced automation |
-| 4 | Enable session isolation for scheduled tasks | @JoJo | Fri | Advanced automation |
-| 5 | Set up vector search for semantic memory search | @JoJo | Fri | Memory enhancement |
-| 6 | Configure full-text search across memory files | @JoJo | Fri | Memory enhancement |
-| 7 | Implement memory compactions for optimization | @JoJo | Fri | Memory enhancement |
-| 8 | Enable cross-session memory for better context | @JoJo | Fri | Memory enhancement |
+## ✅ Completed This Week
+| # | Task | Owner | Completed | Notes |
+|---|------|-------|-----------|--------|
+| 1 | Set up cron expressions for complex scheduling | @JoJo | 2026-02-11 | Created System Health Check (every 30min) and Low Disk Space Alert (every 15min) |
+| 2 | Configure wake events for conditional triggers | @JoJo | 2026-02-11 | Wake events configured with cron jobs |
+| 3 | Enable session isolation for scheduled tasks | @JoJo | 2026-02-11 | Both new cron jobs use isolated sessions |
+| 4 | Set up vector search for semantic memory search | @JoJo | 2026-02-11 | Memory search already enabled with OpenAI embeddings |
+| 5 | Configure full-text search across memory files | @JoJo | 2026-02-11 | FTS already ready and enabled |
+
+## ✅ Completed Today
+| # | Task | Owner | Completed | Notes |
+|---|------|-------|-----------|--------|
+| 1 | Implement exec approvals system | @JoJo | 2026-02-11 | Basic approvals configured, monitoring enabled |
+| 2 | Implement memory compactions for optimization | @JoJo | 2026-02-11 | Memory reindexed and optimized |
+| 3 | Enable cross-session memory for better context | @JoJo | 2026-02-11 | Isolated sessions now use shared memory context |
 
 ## 📋 Backlog
 | # | Task | Owner | Priority | Notes |
