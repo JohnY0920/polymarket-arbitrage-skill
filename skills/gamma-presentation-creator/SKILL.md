@@ -16,6 +16,8 @@ Converts your ideas, text, or structured content into polished presentations, do
 - Professional documents from text
 - AI-powered content creation
 
+**Important**: Gamma creates presentations accessible via dashboard URL. For direct email attachments, export from Gamma dashboard or use alternative PPTX creation methods.
+
 **Data Source:** Gamma.app API (https://gamma.app/)
 
 ## 🚀 Quick Start

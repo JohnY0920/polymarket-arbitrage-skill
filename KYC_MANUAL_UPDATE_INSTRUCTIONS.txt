@@ -1,0 +1,18 @@
+KYC FORM - MANUAL UPDATE REQUIRED
+==================================
+
+The automated PDF update is having technical difficulties.
+
+MANUAL STEPS REQUIRED:
+1. Open the original PDF: KYC_Form_Updated_July6_2004.pdf
+2. Go to Page 2
+3. Find the field: "Date of Incorporation: *"
+4. Type in: July 6, 2004
+5. Save the file
+
+FIELD LOCATION:
+- Section 1: Transaction Party Information
+- Below "Incorporation / Company Number: *"
+- Above "City and Country of Incorporation: *"
+
+The field should be clearly visible as a fillable form field.

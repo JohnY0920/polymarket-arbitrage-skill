@@ -1,0 +1,20 @@
+KYC FORM UPDATE SUMMARY
+========================
+
+REQUESTED: Add "July 6, 2004" to Date of Incorporation field
+
+STATUS: Manual update required due to PDF technical limitations
+
+FILES PROVIDED:
+1. KYC_Form_Updated_July6_2004.pdf (original, clean file)
+2. KYC_DETAILED_INSTRUCTIONS.txt (step-by-step guide)
+
+NEXT STEPS:
+1. Open KYC_Form_Updated_July6_2004.pdf
+2. Go to page 2
+3. Find "Date of Incorporation: *" field
+4. Type: July 6, 2004
+5. Save
+
+The field is clearly visible and should be fillable.
+If not fillable electronically, print and write by hand.
