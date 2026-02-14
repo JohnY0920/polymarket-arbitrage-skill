@@ -1,6 +1,20 @@
 # Security Notice
 # This file ensures .env and other sensitive files are never committed
 
+# Sensitive DNA files - NEVER commit these
+AGENTS.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+TUNNEL_SETUP.md
+USER.md
+*.md  # Be careful with markdown files - only allow specific ones
+
+# Memory files - keep local only
+memory/
+
+# Environment and secrets
 .env
 .env.local
 .env.production
@@ -14,11 +28,41 @@ credentials/
 .ssh/__pycache__/
 
 # Temporary files
-*.pdf
-*.html
-*.json
+*.tmp
+*.log
 
-# Office documents
-*.pptx
-*.xlsx
-*.docx
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Allow specific files in root
+!README.md
+!LICENSE
+!*.skill
+!skills/*/README.md
+!skills/*/SKILL.md
