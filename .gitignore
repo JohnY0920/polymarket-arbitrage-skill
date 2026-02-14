@@ -65,4 +65,10 @@ yarn-error.log*
 !LICENSE
 !*.skill
 !skills/*/README.md
-!skills/*/SKILL.md
+!skills/*/SKILL.md# Add these to prevent accidental commits of sensitive files
+*.xlsx
+*.pdf
+*.pptx
+*.html
+*.json
+heartbeat-state.json
